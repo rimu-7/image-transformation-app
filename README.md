@@ -75,10 +75,3 @@ To get started with this app on your local machine, follow these steps:
 
 
 ```
-
----
-
-Enjoy transforming your images with this simple yet powerful app! ✨
-```
-
-This `README.md` provides an overview of the app, instructions for installation, usage details, and contribution guidelines. Feel free to adjust the sections to better suit your project’s unique requirements!
