@@ -67,14 +67,17 @@ export default function Home() {
   const flipImage = () => {
     const newTransform = { ...transform, scaleX: transform.scaleX === 1 ? -1 : 1 };
     applyTransformation(newTransform);
-    setSelectedTool("flip");
+    setSelectedTool("flip-horizontal");
   };
 
-  const resetImage = () => {
-    const newTransform = { rotate: 0, scaleX: 1, opacity: 100 };
+  const flipImageUpBottom = () => {
+    const newTransform = { ...transform, scaleY: transform.scaleY === 1 ? -1 : 1 };
     applyTransformation(newTransform);
-    setSelectedTool("reset");
+    setSelectedTool("flip-vertical");
   };
+
+
+
 
 
 
@@ -106,6 +109,7 @@ export default function Home() {
   };
 
 
+  const isRotated = transform.rotate % 180 !== 0;
 
 
   return (
@@ -137,12 +141,12 @@ export default function Home() {
             { id: "rotate-left", label: "Left", title: "Rotate Left", onClick: rotateLeft, disabled: isTransforming },
             { id: "rotate-right", label: "Right", title: "Rotate Right", onClick: rotateRight, disabled: isTransforming },
             { id: "rotate-down", label: isDown ? "Down" : "Up", title: isDown ? "Rotate Up" : "Rotate Down", onClick: rotateDown, disabled: isTransforming },
-            { id: "flip", label: "Flip", title: "Flip", onClick: flipImage, disabled: isTransforming },
-            { id: "reset", label: "Reset", title: "Reset", onClick: resetImage, disabled: isTransforming },
+            { id: "flip-horizontal", label: "Flip-H", title: "Flip Horizontally", onClick: flipImage, disabled: isTransforming },
+            { id: "flip-vertical", label: "Flip-V", title: "Flip Vertically", onClick: flipImageUpBottom, disabled: isTransforming },
           ].map((tool) => (
             <button
               key={tool.id}
-              className={`p-2 bg-gray-200 rounded hover:bg-gray-300 transition-colors ${selectedTool === tool.id ? "ring-2 ring-blue-500" : ""
+              className={`px-2 bg-gray-200 rounded hover:bg-gray-300 transition-colors ${selectedTool === tool.id ? "ring-2 ring-blue-500" : ""
                 }`}
               title={tool.title}
               onClick={tool.onClick}
@@ -208,17 +212,23 @@ export default function Home() {
             </label>
           </div>
         ) : (
-          <div className="max-w-full max-h-full p-4">
+          <div
+            className={`relative flex justify-center items-center transition-all duration-300${isRotated ? "w-[calc(100vh)] h-[calc(100vw)] " : "w-full h-full "
+              }`}
+          >
             <img
               src={image}
               alt="Preview"
-              className="max-w-full max-h-full object-contain transition-transform duration-300 ease-in-out"
+              className="object-contain transition-transform duration-300 p-10 ease-in-out"
               style={{
-                transform: `rotate(${transform.rotate}deg) scaleX(${transform.scaleX})`,
+                transform: `rotate(${transform.rotate}deg) scaleX(${transform.scaleX}) scaleY(${transform.scaleY})`,
                 opacity: `${transform.opacity}%`,
+                maxWidth: isRotated ? "100vh" : "100%",
+                maxHeight: isRotated ? "100vw" : "100%",
               }}
             />
           </div>
+
         )}
       </div>
     </div>
