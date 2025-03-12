@@ -162,7 +162,7 @@ export default function Home() {
           <label htmlFor="opacity" className="block text-sm font-medium text-gray-700">
             Opacity:
             <span
-              className="px-2 ml-1 rounded border border-black" // Black border
+              className="px-2 ml-1 rounded border border-black"
 
             >
               {transform.opacity}%
