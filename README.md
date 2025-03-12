@@ -76,11 +76,6 @@ To get started with this app on your local machine, follow these steps:
 
 ```
 
-## Acknowledgements
-
-- Thanks to [Tailwind CSS](https://tailwindcss.com/) for the beautiful, utility-first CSS framework.
-- Thanks to the open-source community for their contributions.
-
 ---
 
 Enjoy transforming your images with this simple yet powerful app! ✨
