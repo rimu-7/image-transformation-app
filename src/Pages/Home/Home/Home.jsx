@@ -114,8 +114,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col md:flex-row h-screen p-4 bg-gray-100 overflow-hidden text-black">
-      {/* Right Section */}
-      <div className="w-full md:w-1/4 flex flex-col gap-4 p-4 bg-white rounded-lg shadow-lg overflow-y-auto">
+      {/* Left Section */}
+      <div className="w-full md:w-1/4 flex flex-col gap-4 p-4 m-2 bg-white rounded-lg shadow-lg overflow-y-auto">
         {/* Original Image Preview */}
         `{image ? (
           <div className="flex flex-col items-center">
@@ -136,7 +136,7 @@ export default function Home() {
         )}`
 
         {/* Toolbar */}
-        <div className="flex flex-wrap gap-2 justify-center text-center">
+        <div className="flex flex-wrap gap-2 justify-center border-t border-r rounded p-2 text-center">
           {[
             { id: "rotate-left", label: "Left", title: "Rotate Left", onClick: rotateLeft, disabled: isTransforming },
             { id: "rotate-right", label: "Right", title: "Rotate Right", onClick: rotateRight, disabled: isTransforming },
@@ -146,8 +146,9 @@ export default function Home() {
           ].map((tool) => (
             <button
               key={tool.id}
-              className={`px-2 bg-gray-200 rounded hover:bg-gray-300 transition-colors ${selectedTool === tool.id ? "ring-2 ring-blue-500" : ""
+              className={`px-2 cursor-pointer  rounded  transition-colors ${selectedTool === tool.id ? " bg-gray-300" : "bg-gray-100"
                 }`}
+
               title={tool.title}
               onClick={tool.onClick}
               disabled={tool.disabled}
@@ -162,7 +163,7 @@ export default function Home() {
           <label htmlFor="opacity" className="block text-sm font-medium text-gray-700">
             Opacity:
             <span
-              className="px-2 ml-1 rounded border border-black"
+              className="px-2 ml-1 rounded border-t border-r border-black"
 
             >
               {transform.opacity}%
@@ -188,9 +189,9 @@ export default function Home() {
           Download
         </button>
       </div>
-      {/* Left Section */}
+      {/* Right Section */}
       <div
-        className="flex-1 flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg my-2 sm:mx-2 bg-white transition-all duration-300 overflow-hidden"
+        className="flex-1 flex  items-center justify-center border-2 border-dashed border-gray-300 rounded-lg my-2 bg-white transition-all duration-300 overflow-hidden"
         onDragOver={handleDragOver}
         onDrop={handleDrop}
       >
